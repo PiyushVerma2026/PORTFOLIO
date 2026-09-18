@@ -83,13 +83,14 @@
     height:3x;
     z-index:200;
     pointer-events:none;
-    background:linear-gradient(90deg, var(--accent), var(--project-violet));
+    background:linear-gradient(90deg, var(--accent), var(--indigo));
+    box-shadow:0 1px 8px rgba(109,216,196,.45);
     transform:scaleX(0);
     transform-origin:left center;
     transition:transform .08s linear;
   }
   body.light-mode .scroll-progress{
-    background:linear-gradient(90deg, #0F766E, #155E75);
+    background:linear-gradient(90deg, #0F766E, #4F46E5);
     box-shadow:0 1px 5px rgba(15,118,110,.35);
   }
   header, main, footer{position:relative; z-index:1;}
@@ -589,21 +590,6 @@
   body.light-mode .resume-band .btn-primary{background:#5EEAD4; color:#063B37;}
   body.light-mode .resume-band .btn-secondary{border-color:#6B8581; color:#F7FFFD;}
   body.light-mode .resume-band .btn-secondary:hover{border-color:#F7FFFD;}
-  .resume-modal{position:fixed; inset:0; z-index:300; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(20,23,28,.58); backdrop-filter:blur(7px);}
-  .resume-modal.open{display:flex;}
-  .resume-dialog{width:min(100%, 460px); background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:28px; box-shadow:0 24px 70px rgba(20,23,28,.24);}
-  .resume-dialog-head{display:flex; justify-content:space-between; gap:20px; align-items:flex-start; margin-bottom:20px;}
-  .resume-dialog h2{font-size:1.45rem; margin-bottom:5px;}
-  .resume-dialog p{color:var(--ink-soft); font-size:.93rem; margin:0;}
-  .modal-close{border:1px solid var(--line-strong); background:transparent; color:var(--ink); border-radius:8px; width:34px; height:34px; cursor:pointer; font-size:20px; line-height:1;}
-  .modal-close:hover{border-color:var(--accent); color:var(--accent);}
-  .resume-options{display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;}
-  .resume-option{display:flex; flex-direction:column; gap:6px; align-items:flex-start; min-height:108px; padding:15px; border:1px solid var(--line); border-radius:10px; background:var(--surface-tint); text-decoration:none; transition:transform .15s ease, border-color .15s ease, background .15s ease;}
-  .resume-option:hover{transform:translateY(-3px); border-color:var(--accent); background:var(--accent-soft);}
-  .resume-option strong{font-family:var(--font-mono); color:var(--accent-strong); font-size:14px;}
-  .resume-option span{color:var(--ink-soft); font-size:12px; margin-top:auto;}
-  .resume-status{color:var(--warn-text) !important; font-family:var(--font-mono); font-size:11px !important; margin-top:16px !important;}
-  @media (max-width:520px){.resume-options{grid-template-columns:1fr;}.resume-option{min-height:auto; flex-direction:row; align-items:center; justify-content:space-between;}.resume-option span{margin-top:0;}}
 
   /* ---------- Contact ---------- */
   .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
@@ -699,7 +685,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button type="button" class="theme-btn" id="themeToggle" aria-label="Switch to light mode" aria-pressed="false"><span aria-hidden="true">☼</span><span id="themeLabel">Light mode</span></button>
-    <a href="#resume" class="nav-cta">Resume ↓</a>
+    <a href="#resume" class="nav-cta">Resume</a>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navlinks">
       <span></span>
     </button>
@@ -1248,33 +1234,15 @@
       <div class="resume-band reveal">
         <div>
           <h2>Want the full picture?</h2>
-          <p>Download the resume for a complete summary of experience, education, and skills.</p>
+          <p>View or download the resume for a complete summary of experience, education, and skills.</p>
         </div>
         <div class="cta-row">
-          <button type="button" class="btn btn-primary resume-trigger">Download Resume</button>
+          <a href="https://drive.google.com/file/d/1n8Ar3DW1XHM_dTDzjH6rSrlFD545Tp7K/view?usp=drive_link" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View or Download Resume</a>
           <a href="mailto:piyushvermapro@gmail.com?subject=Resume%20request" class="btn btn-secondary">Email me</a>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle" aria-hidden="true">
-    <div class="resume-dialog">
-      <div class="resume-dialog-head">
-        <div>
-          <h2 id="resumeModalTitle">Choose a format</h2>
-          <p>Select PDF, Word, or Markdown. Upload the matching file into <code>assets/</code> later.</p>
-        </div>
-        <button type="button" class="modal-close" id="resumeModalClose" aria-label="Close resume format chooser">×</button>
-      </div>
-      <div class="resume-options">
-        <a class="resume-option" href="assets/Piyush-Verma-Resume.docx" data-placeholder="true"><strong>Word</strong><span>.docx</span></a>
-        <a class="resume-option" href="assets/Piyush-Verma-Resume.pdf" data-placeholder="true"><strong>PDF</strong><span>.pdf</span></a>
-        <a class="resume-option" href="assets/Piyush-Verma-Resume.md" data-placeholder="true"><strong>Markdown</strong><span>.md</span></a>
-      </div>
-      <p class="resume-status" id="resumeStatus" aria-live="polite"></p>
-    </div>
-  </div>
 
   <!-- ===================== CONTACT ===================== -->
   <section id="contact" aria-labelledby="contact-title">
@@ -1453,43 +1421,6 @@
   themeToggle.addEventListener('click', () => {
     const light = document.body.classList.toggle('light-mode');
     updateThemeLabel();
-  });
-
-  // Resume format chooser. The three files are placeholders until uploaded to assets/.
-  const resumeModal = document.getElementById('resumeModal');
-  const resumeModalClose = document.getElementById('resumeModalClose');
-  const resumeStatus = document.getElementById('resumeStatus');
-  const openResumeModal = () => {
-    resumeModal.classList.add('open');
-    resumeModal.setAttribute('aria-hidden', 'false');
-    resumeModalClose.focus();
-  };
-  const closeResumeModal = () => {
-    resumeModal.classList.remove('open');
-    resumeModal.setAttribute('aria-hidden', 'true');
-  };
-  document.querySelectorAll('.resume-trigger').forEach(button => button.addEventListener('click', openResumeModal));
-  resumeModalClose.addEventListener('click', closeResumeModal);
-  resumeModal.addEventListener('click', event => {
-    if (event.target === resumeModal) closeResumeModal();
-  });
-  resumeModal.querySelectorAll('[data-placeholder="true"]').forEach(link => link.addEventListener('click', async event => {
-    event.preventDefault();
-    resumeStatus.textContent = 'Checking for the file...';
-    try {
-      const response = await fetch(link.href, { method: 'HEAD', cache: 'no-store' });
-      if (!response.ok) throw new Error('missing');
-      const download = document.createElement('a');
-      download.href = link.href;
-      download.download = '';
-      download.click();
-      resumeStatus.textContent = '';
-    } catch (error) {
-      resumeStatus.textContent = 'Placeholder only — upload this file to the assets folder to enable download.';
-    }
-  }));
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && resumeModal.classList.contains('open')) closeResumeModal();
   });
 
   // Keep unfinished links from sending visitors to invalid placeholder URLs.
