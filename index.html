@@ -80,7 +80,7 @@
     top:0;
     left:0;
     width:100%;
-    height:3x;
+    height:4px;
     z-index:200;
     pointer-events:none;
     background:linear-gradient(90deg, var(--accent), var(--indigo));
@@ -518,13 +518,14 @@
   .about-photo img{width:100%; height:100%; object-fit:cover; border-radius:inherit;}
   .approach-flow{
     font-family:var(--font-mono);
-    font-size:13px;
-    color:var(--ink-soft);
-    line-height:2.1;
+    font-size:16px;
+    color:var(--ink);
+    line-height:2;
+    font-weight:500;
     margin:16px 0 24px;
   }
   .care-list{display:flex; flex-wrap:wrap; gap:10px;}
-  .care-list .tag{color:var(--ink-soft);}
+  .care-list .tag{color:var(--ink); font-size:14px; font-weight:500;}
 
   /* ---------- Experience / Education ---------- */
   .timeline-item{
@@ -539,8 +540,10 @@
   @media (max-width:640px){.timeline-item{grid-template-columns:1fr;}}
   .timeline-date{
     font-family:var(--font-mono);
-    font-size:12.5px;
-    color:var(--ink-faint);
+    font-size:15px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    font-weight:500;
   }
   .timeline-body h3{font-size:1.08rem; margin-bottom:4px;}
   .timeline-role{color:var(--accent); font-size:0.92rem; font-weight:500; margin-bottom:10px;}
@@ -1253,7 +1256,6 @@
         <ul class="contact-list">
           <li><span>Email</span><a href="mailto:piyushvermapro@gmail.com">piyushvermapro@gmail.com</a></li>
           <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/piyush-verma-b955bb273" target="_blank" rel="noopener noreferrer">Piyush Verma ↗</a></li>
-          <li><span>Kaggle</span><a href="https://www.kaggle.com/pverma2026" target="_blank" rel="noopener noreferrer">Kaggle ↗</a></li>
           <li><span>Location</span><span>Delhi, India</span></li>
         </ul>
       </div>
@@ -1275,9 +1277,10 @@
       <div class="footer-meta">Data Scientist</div>
     </div>
     <ul class="footer-links">
+      <li><a href="mailto:piyushvermapro@gmail.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/piyush-verma-b955bb273" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       <li><a href="https://www.kaggle.com/pverma2026" target="_blank" rel="noopener noreferrer">Kaggle</a></li>
-      <li><a href="mailto:piyushvermapro@gmail.com">Email</a></li>
+      <li><a href="https://github.com/PiyushVerma2026" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="#resume">Resume</a></li>
     </ul>
     <div class="footer-meta">© 2026 Piyush Verma</div>
